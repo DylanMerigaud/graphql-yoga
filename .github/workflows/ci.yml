@@ -3,11 +3,8 @@ env:
   NODE_NO_WARNINGS: true
 on:
   push:
-    branches:
-      - 'main'
-  pull_request:
-    paths-ignore:
-      - 'website/**'
+    branches: [ci/docs/link-tutorial-from-quick-start]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -137,7 +134,7 @@ jobs:
 
   integration:
     name: integration / nodejs v${{ matrix.node-version }} / graphql v${{ matrix.graphql-version }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GRAPHQL_VERSION: ${{ matrix.graphql-version }}
     strategy:
